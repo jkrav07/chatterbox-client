@@ -11,9 +11,9 @@ var App = {
   initialize: function() {
     App.username = window.location.search.substr(10);
 
-    FormView.initialize();
+    FormView.initialize(); //? submitting messages
     RoomsView.initialize();
-    MessagesView.initialize();
+    MessagesView.initialize(); //? attaching messages to DOM
 
     // Fetch initial batch of messages
     App.startSpinner();
@@ -27,6 +27,7 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      //render function from MessageSSS
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.

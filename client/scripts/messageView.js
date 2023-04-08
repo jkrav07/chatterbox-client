@@ -6,12 +6,19 @@ var MessageView = {
   // here: https://underscorejs.org/#template.
   // TODO: Update this template accordingly.
   render: _.template(`
-      <!--
       <div class="chat">
-        <div class="username"></div>
-        <div></div>
+        <div class="username"><%= username %></div>
+        <div class="text"><%= text %></div>
       </div>
-      -->
     `)
 
+
 };
+
+//store messages from server
+// var message = {
+//   username: 'Mel Brooks',
+//   text: 'It\'s good to be the king',
+//   roomname: 'lobby'
+// };
+
