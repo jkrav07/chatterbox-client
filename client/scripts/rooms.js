@@ -7,9 +7,30 @@ var Rooms = {
   // TODO: Define how you want to store the list of rooms
   _data: [],
 
-  //addRoom
+  add: function(room) {
+    if (!this._data.includes(room)) {
+      this._data.push(room);
+    }
+  },
 
-  //updateList
+  retrieve: function() {
+    return this._data.map(room => {
+      return room;
+    });
+  },
+
+  updateList: function() {
+    let messages = Messages.retrieve();
+
+    let uniqueRooms = [];
+    messages.forEach(message => {
+      if (!uniqueRooms.includes(message.roomname)) {
+        uniqueRooms.push(message.roomname);
+      }
+    });
+    this._data = uniqueRooms;
+  }
+
 
   //markSelectedRoom
 

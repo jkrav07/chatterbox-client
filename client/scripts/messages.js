@@ -14,13 +14,14 @@ var Messages = {
   },
 
   retrieve: function() {
-    return this._data;
-  }
+    return this._data.map(message => {
+      return message;
+    });
+  },
+
+  clear: function() {
+    this._data = [];
+  },
+
 };
 
-//store messages from server
-// var message = {
-//   username: 'Mel Brooks',
-//   text: 'It\'s good to be the king',
-//   roomname: 'lobby'
-// };

@@ -11,27 +11,45 @@ var App = {
   initialize: function() {
     App.username = window.location.search.substr(10);
 
-    FormView.initialize(); //? submitting messages
+    FormView.initialize();
     RoomsView.initialize();
-    MessagesView.initialize(); //? attaching messages to DOM
+    MessagesView.initialize();
 
-    // Fetch initial batch of messages
     App.startSpinner();
+    // Fetch initial batch of messages
     App.fetch(App.stopSpinner);
+    // ?????///// why not working?, but works with click handler
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
   },
 
   fetch: function(callback = ()=>{}) {
+    callback();
     Parse.readAll((data) => {
-      // examine the response from the server request:
+      Messages.clear();
       console.log(data);
-      //render function from MessageSSS
 
-      // TODO: Use the data to update Messages and Rooms
-      // and re-render the corresponding views.
+      data.forEach(message => {
+        let notMalicious = true;
+        for (let prop in message) {
+          let string = message[prop];
+          if (typeof string === 'string') {
+            if (string.includes('<') && string.includes('>')) {
+              notMalicious = false;
+              break;
+            }
+          }
+        }
+        if (notMalicious) {
+          Messages.add(message);
+        }
+      });
+      MessagesView.render();
+      Rooms.updateList();
+      RoomsView.render();
     });
+
   },
 
   startSpinner: function() {

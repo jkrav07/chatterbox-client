@@ -13,14 +13,24 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-
-
-    //Parse.create(message)???
-
+    let message = $('#message').val();
+    let roomName = $('#roomSelect option:selected').text();
+    console.log(roomName);
+    let messageObj = {
+      username: 'jkrav07',
+      text: message,
+      roomname: roomName
+    };
+    Parse.create(messageObj, function (data) {
+      console.log('chatterbox: Message sent');
+    });
+    $('#message').val('');
     console.log('click!');
+    //App.fetch();
+    //MessagesView.render();
+
   },
 
   setStatus: function(active) {
@@ -30,17 +40,3 @@ var FormView = {
 
 };
 
-/*
-  readAll: function(successCB, errorCB = null) {
-    $.ajax({
-      url: Parse.server,
-      type: 'GET',
-      data: { order: '-createdAt' },
-      contentType: 'application/json',
-      success: successCB,
-      error: errorCB || function(error) {
-        console.error('chatterbox: Failed to fetch messages', error);
-      }
-    });
-  }
-*/

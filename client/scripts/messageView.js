@@ -11,14 +11,5 @@ var MessageView = {
         <div class="text"><%= text %></div>
       </div>
     `)
-
-
 };
-
-//store messages from server
-// var message = {
-//   username: 'Mel Brooks',
-//   text: 'It\'s good to be the king',
-//   roomname: 'lobby'
-// };
 
